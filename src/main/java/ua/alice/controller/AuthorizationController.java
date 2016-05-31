@@ -37,8 +37,8 @@ public class AuthorizationController {
         Department department = departmentJpaRepository.findOne(Integer.parseInt(user.getDepartment_trans()));
         Subdivision subdivision = subdivisionJpaRepository.findOne(Integer.parseInt(user.getSubdivision_trans()));
 
-        department.setUser(user);
-        subdivision.setUser(user);
+        department.addUser(user);
+        subdivision.addUser(user);
 
         user.setDepartment(department);
         user.setSubdivision(subdivision);

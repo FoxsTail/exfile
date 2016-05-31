@@ -49,11 +49,11 @@
         </tr>
         <tr>
                 <%-- TODO:сделать, чтобы деп и саб подгружались из реальности, а не хранились на вьюшке--%>
-            <td><form:select path="subdivision_trans" >
-                <form:option value="0" label="Choose a subdivision: "/>
-                <form:option value="1" label="Right" />
-                <form:option value="2" label="Left" />
-            </form:select></td>
+                    <td><form:select path="subdivision_trans" >
+                        <form:option value="0" label="Choose a subdivision: "/>
+                        <form:option value="1" label="Right" />
+                        <form:option value="2" label="Left" />
+                    </form:select></td>
         </tr>
         <tr>
             <td><form:select path="department_trans">

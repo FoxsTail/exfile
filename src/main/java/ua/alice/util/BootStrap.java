@@ -35,10 +35,13 @@ public class BootStrap {
 
         System.err.println("iniiiiiiiiiiiiiiiiiiiit");
 
-        ExFile exFile1 = new ExFile("firstFile","sdfdf", "ololo");
-     //   ExFile exFile2 = new ExFile("secondFile", new File("SecondFile"));
+        ExFile exFile1 = new ExFile("firstFile",10, "ololo");
+          ExFile exFile2 = new ExFile("secondFile", 20, "alala" );
+        ExFile exFile3 = new ExFile("thirdFile", 25, "alala" );
 
-     //   exFile1.setFile(new File("FirstFile"));
+        exFile1.setFile(new File("FirstFile"));
+        exFile2.setFile(new File("SecondFile"));
+        exFile3.setFile(new File("3File"));
 
         Department department1 = new Department("Finance");
         Department department2 = new Department("Law");
@@ -52,11 +55,23 @@ public class BootStrap {
         subdivisionJpaRepository.save(subdivision1);
         subdivisionJpaRepository.save(subdivision2);
 
+       department1.addExFile(exFile1);
+        department2.addExFile(exFile2);
+
+        exFile1.setSender_department(department1);
+        exFile2.setSender_department(department2);
+
+        subdivision1.addExFile(exFile1);
+        subdivision2.addExFile(exFile2);
+
+        exFile1.setSender_subdivision(subdivision1);
+        exFile2.setSender_subdivision(subdivision2);
+
         exFileJpaRepository.save(exFile1);
-  //      exFileJpaRepository.save(exFile2);
+        exFileJpaRepository.save(exFile2);
         User user = new User("admin", "1111111", "firstAdmin", Role.ADMIN, "surname", "patronymic", "somemail@gmail.com", "123456789");
-        department1.setUser(user);
-        subdivision1.setUser(user);
+        department1.addUser(user);
+        subdivision1.addUser(user);
 
         user.setDepartment(department1);
         user.setSubdivision(subdivision1);

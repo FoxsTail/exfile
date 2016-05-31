@@ -49,11 +49,11 @@ public class User {
     @Column(name = "inn_user")
     private String inn;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_subdivision")
     private Subdivision subdivision;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_department")
     private Department department;
 

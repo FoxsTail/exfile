@@ -14,6 +14,8 @@
 <body>
 <c:forEach items="${files}" var="file">
   ${file.about}
+  ${file.size}
+  ${file.sender_department.name}
 </c:forEach>
 </body>
 </html>

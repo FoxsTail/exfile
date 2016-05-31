@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import ua.alice.entity.Department;
 import ua.alice.entity.ExFile;
+import ua.alice.entity.Subdivision;
 import ua.alice.entity.User;
+import ua.alice.repository.DepartmentJpaRepository;
 import ua.alice.repository.ExFileJpaRepository;
+import ua.alice.repository.SubdivisionJpaRepository;
 import ua.alice.repository.UserJpaRepository;
 
 import java.io.File;
@@ -25,6 +29,11 @@ public class MainController {
 
     @Autowired
     private UserJpaRepository userJpaRepository;
+
+    @Autowired
+    private DepartmentJpaRepository departmentJpaRepository;
+    @Autowired
+    private SubdivisionJpaRepository subdivisionJpaRepository;
 
     @RequestMapping("/files")
     public ModelAndView files(){
@@ -48,13 +57,22 @@ public class MainController {
     public ModelAndView sendFile(@ModelAttribute("file") ExFile exFile, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return new ModelAndView("sendFile");
+            return new ModelAndView("someErrors");
         }
-     //   exFile.setFile(new File("WeARE"));
+         Department dep1 = departmentJpaRepository.findOne(Integer.parseInt(exFile.getSender_department_trans()));
+        Subdivision sub1 = subdivisionJpaRepository.findOne(Integer.parseInt(exFile.getSender_subdivision_trans()));
+
+        dep1.addExFile(exFile);
+        sub1.addExFile(exFile);
+
+        exFile.setSender_subdivision(sub1);
+        exFile.setSender_department(dep1);
+
+        exFile.setFile(new File("WeARE"));
 
         exFileJpaRepository.save(exFile);
 
-        return new ModelAndView("sendFile");
+        return new ModelAndView("okpage");
     }
 
     @RequestMapping("/send")

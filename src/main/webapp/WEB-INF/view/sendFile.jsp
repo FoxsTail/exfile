@@ -22,12 +22,27 @@
 
         <tr>
             <td>Enter file size</td>
-            <td><form:input type = "text" name = "size" path="size" placeholder = "File Size"/> </td>
+            <td><form:input type = "number" name = "size" path="size" placeholder = "File Size"/> </td>
         </tr>
 
         <tr>
             <td>Enter file about</td>
             <td><form:input type = "text" name = "about" path="about" placeholder = "File About"/> </td>
+        </tr>
+        <tr>
+                <%-- TODO:сделать, чтобы деп и саб подгружались из реальности, а не хранились на вьюшке--%>
+            <td><form:select path="sender_subdivision_trans" >
+                <form:option value="0" label="Choose a subdivision: "/>
+                <form:option value="1" label="Right" />
+                <form:option value="2" label="Left" />
+            </form:select></td>
+        </tr>
+        <tr>
+            <td><form:select path="sender_department_trans">
+                <form:option value="0" label="Choose a department:" />
+                <form:option value="1" label="Finance" />
+                <form:option value="2" label="Law" />
+            </form:select></td>
         </tr>
 
         <tr>
@@ -49,6 +64,7 @@
 
 </form:form>
 
-
+<td><a href="/web/files"><button>See all files</button></a> </td>
+<td><a href="/web/users"><button>See all users</button></a> </td>
 </body>
 </html>
