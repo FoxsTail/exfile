@@ -18,16 +18,17 @@ public class Department {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sender_department", cascade = CascadeType.ALL)
-    private List<ExFile> exFiles = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "file_id")
+    private ExFile exFile;
 
 
     public Department(){ }
 
-    public Department(String name, List<User> users, List<ExFile> exFiles) {
+    public Department(String name, List<User> users) {
         this.name = name;
         this.users = users;
-        this.exFiles = exFiles;
+//        this.exFiles = exFiles;
     }
 
     public Department(String name) {
@@ -39,10 +40,6 @@ public class Department {
         users.add(user);
     }
 
-    public void addExFile(ExFile exFile){
-        exFile.setSender_department(this);
-        exFiles.add(exFile);
-    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -68,11 +65,11 @@ public class Department {
         this.users = users;
     }
 
-    public List<ExFile> getExFiles() {
-        return exFiles;
+    public ExFile getExFile() {
+        return exFile;
     }
 
-    public void setExFiles(List<ExFile> exFiles) {
-        this.exFiles = exFiles;
+    public void setExFile(ExFile exFile) {
+        this.exFile = exFile;
     }
 }

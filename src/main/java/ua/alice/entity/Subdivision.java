@@ -20,15 +20,17 @@ public class Subdivision {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subdivision", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sender_subdivision", cascade = CascadeType.ALL)
-    private List<ExFile> exFiles = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "file_id")
+    private ExFile exFile;
+
 
     Subdivision(){ }
 
-    public Subdivision(String name, List<User> users, List<ExFile> exFiles) {
+    public Subdivision(String name, List<User> users) {
         this.name = name;
         this.users = users;
-        this.exFiles = exFiles;
+
     }
 
     public Subdivision(String name) {
@@ -40,10 +42,6 @@ public class Subdivision {
         users.add(user);
     }
 
-    public void addExFile(ExFile exFile){
-        exFile.setSender_subdivision(this);
-        exFiles.add(exFile);
-    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -69,11 +67,11 @@ public class Subdivision {
         return users;
     }
 
-    public List<ExFile> getExFiles() {
-        return exFiles;
+    public ExFile getExFile() {
+        return exFile;
     }
 
-    public void setExFiles(List<ExFile> exFiles) {
-        this.exFiles = exFiles;
+    public void setExFile(ExFile exFile) {
+        this.exFile = exFile;
     }
 }

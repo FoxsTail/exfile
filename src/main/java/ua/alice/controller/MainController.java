@@ -9,14 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import ua.alice.entity.Department;
-import ua.alice.entity.ExFile;
-import ua.alice.entity.Subdivision;
-import ua.alice.entity.User;
-import ua.alice.repository.DepartmentJpaRepository;
-import ua.alice.repository.ExFileJpaRepository;
-import ua.alice.repository.SubdivisionJpaRepository;
-import ua.alice.repository.UserJpaRepository;
+import ua.alice.entity.*;
+import ua.alice.repository.*;
 
 import java.io.File;
 import java.util.List;
@@ -34,6 +28,8 @@ public class MainController {
     private DepartmentJpaRepository departmentJpaRepository;
     @Autowired
     private SubdivisionJpaRepository subdivisionJpaRepository;
+    @Autowired
+    private CategoryJpaRepository categoryJpaRepository;
 
     @RequestMapping("/files")
     public ModelAndView files(){
@@ -59,11 +55,28 @@ public class MainController {
         if(bindingResult.hasErrors()){
             return new ModelAndView("someErrors");
         }
+
+        Category category;
+        for(String s: exFile.getValue_categories()){
+            category = categoryJpaRepository.findOne(Integer.parseInt(s));
+            exFile.addGetterCategory(category);
+        }
+
+        Department department;
+        for(String s: exFile.getValue_departments()){
+            department = departmentJpaRepository.findOne(Integer.parseInt(s));
+            exFile.addGetterDepartment(department);
+        }
+
+        Subdivision subdivision;
+        for(String s: exFile.getValue_subdivisions()){
+            subdivision = subdivisionJpaRepository.findOne(Integer.parseInt(s));
+            exFile.addGetterSubdivision(subdivision);
+        }
+
          Department dep1 = departmentJpaRepository.findOne(Integer.parseInt(exFile.getSender_department_trans()));
         Subdivision sub1 = subdivisionJpaRepository.findOne(Integer.parseInt(exFile.getSender_subdivision_trans()));
 
-        dep1.addExFile(exFile);
-        sub1.addExFile(exFile);
 
         exFile.setSender_subdivision(sub1);
         exFile.setSender_department(dep1);

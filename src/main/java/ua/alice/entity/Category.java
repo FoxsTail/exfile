@@ -2,6 +2,8 @@ package ua.alice.entity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Лис on 25.04.2016.
@@ -17,6 +19,12 @@ public class Category {
     @Column(name = "name_category", length=60)
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "file_id")
+    private ExFile exFile;
+
+/*    @ManyToMany(mappedBy = "getter_category")
+    private List<ExFile> exFiles = new ArrayList<>();*/
 
     public Category(){ }
 
@@ -24,6 +32,11 @@ public class Category {
         this.name = name;
     }
 
+/*
+    public void addFile(ExFile exFile){
+        exFiles.add(exFile);
+    }
+*/
 
     public void setId(Integer id) {
         this.id = id;
@@ -39,7 +52,13 @@ public class Category {
         return name;
     }
 
+    public ExFile getExFile() {
+        return exFile;
+    }
 
+    public void setExFile(ExFile exFile) {
+        this.exFile = exFile;
+    }
 }
 
 

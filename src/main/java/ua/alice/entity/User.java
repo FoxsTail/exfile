@@ -4,7 +4,11 @@ package ua.alice.entity;
  * Created by Лис on 26.05.2016.
  */
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -16,33 +20,34 @@ public class User {
     @Column(name = "id_user")
     private Long id;
 
-  /*  @Size(min = 2, max = 20)
-    @Pattern(regexp = "[A-Z][a-z]+")*/
+    @Size(min = 2, max = 20)
+    @Pattern(regexp = "[A-Z][a-z]+")
     @Column(name = "login_user", unique = true)
     private String login;
 
-/*    @Size(min = 6, max = 20)*/
+   @Size(min = 6, max = 20)
     @Column(name = "password_user")
     private String password;
 
-   /* @Size(min = 2, max = 20)
-    @Pattern(regexp = "[A-Z][a-z]+")*/
+    @Size(min = 2, max = 20)
+    @Pattern(regexp = "[A-Z][a-z]+")
     @Column(name = "name_user")
     private String name;
 
     @Column(name = "role_user")
     private Role role;
-/*
+
     @Size(min = 2, max = 20)
-    @Pattern(regexp = "[A-Z][a-z]+")*/
+    @Pattern(regexp = "[A-Z][a-z]+")
     @Column(name = "surname_user")
     private String surname;
 
-/*    @Size(min = 2, max = 20)
-    @Pattern(regexp = "[A-Z][a-z]+")*/
+    @Size(min = 2, max = 20)
+    @Pattern(regexp = "[A-Z][a-z]+")
     @Column(name = "patronymic_user")
     private String patronymic;
 
+    @Email
     @Column(name = "email_user", unique = true)
     private String email;
 
@@ -60,9 +65,11 @@ public class User {
     @Column(name = "block_status")
     private Boolean blocked_Y_N = false;
 
+    @Pattern(regexp = "^[1-9][0-9]*$")
     @Transient
     private String department_trans;
 
+    @Pattern(regexp = "^[1-9][0-9]*$")
     @Transient
     private String subdivision_trans;
 

@@ -12,10 +12,35 @@
     <title>Files</title>
 </head>
 <body>
-<c:forEach items="${files}" var="file">
-  ${file.about}
-  ${file.size}
-  ${file.sender_department.name}
-</c:forEach>
+<table>
+    <c:forEach items="${files}" var="file">
+        <tr>
+            <td> ${file.about}</td>
+        </tr>
+        <tr>
+            <td> ${file.size}</td>
+        </tr>
+        <tr>
+            <td> ${file.sender_department.name}</td>
+        </tr>
+        <tr>
+            <td><c:forEach items="${file.getter_subdivisions}" var="sub">
+                ${sub.name}
+            </c:forEach></td>
+        </tr>
+        <tr>
+            <td><c:forEach items="${file.getter_category}" var="cat">
+                ${cat.name}
+            </c:forEach></td>
+        </tr>
+        <tr>
+            <td><c:forEach items="${file.getter_departments}" var="dep">
+                ${dep.name}
+            </c:forEach></td>
+
+        </tr>
+       <tr><td>-------------------------------------------------------</td></tr>
+    </c:forEach>
+</table>
 </body>
 </html>

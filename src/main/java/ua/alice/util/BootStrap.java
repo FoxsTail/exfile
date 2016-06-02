@@ -3,10 +3,7 @@ package ua.alice.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ua.alice.entity.*;
-import ua.alice.repository.DepartmentJpaRepository;
-import ua.alice.repository.ExFileJpaRepository;
-import ua.alice.repository.SubdivisionJpaRepository;
-import ua.alice.repository.UserJpaRepository;
+import ua.alice.repository.*;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -28,6 +25,8 @@ public class BootStrap {
 
     @Autowired
     private DepartmentJpaRepository departmentJpaRepository;
+    @Autowired
+    private CategoryJpaRepository categoryJpaRepository;
 
 
     @PostConstruct
@@ -35,9 +34,9 @@ public class BootStrap {
 
         System.err.println("iniiiiiiiiiiiiiiiiiiiit");
 
-        ExFile exFile1 = new ExFile("firstFile",10, "ololo");
-          ExFile exFile2 = new ExFile("secondFile", 20, "alala" );
-        ExFile exFile3 = new ExFile("thirdFile", 25, "alala" );
+        ExFile exFile1 = new ExFile("firstFile", 10, "ololo");
+        ExFile exFile2 = new ExFile("secondFile", 20, "alala");
+        ExFile exFile3 = new ExFile("thirdFile", 25, "alala");
 
         exFile1.setFile(new File("FirstFile"));
         exFile2.setFile(new File("SecondFile"));
@@ -49,29 +48,46 @@ public class BootStrap {
         Subdivision subdivision1 = new Subdivision("Right");
         Subdivision subdivision2 = new Subdivision("Left");
 
+        Category category1 = new Category("firstOne");
+        Category category2 = new Category("secondOne");
+        Category category3 = new Category("thirdOne");
+
+
+        categoryJpaRepository.save(category1);
+        categoryJpaRepository.save(category2);
+        categoryJpaRepository.save(category3);
+
         departmentJpaRepository.save(department1);
         departmentJpaRepository.save(department2);
 
         subdivisionJpaRepository.save(subdivision1);
         subdivisionJpaRepository.save(subdivision2);
 
-       department1.addExFile(exFile1);
-        department2.addExFile(exFile2);
-
         exFile1.setSender_department(department1);
         exFile2.setSender_department(department2);
-
-        subdivision1.addExFile(exFile1);
-        subdivision2.addExFile(exFile2);
 
         exFile1.setSender_subdivision(subdivision1);
         exFile2.setSender_subdivision(subdivision2);
 
         exFileJpaRepository.save(exFile1);
         exFileJpaRepository.save(exFile2);
-        User user = new User("admin", "1111111", "firstAdmin", Role.ADMIN, "surname", "patronymic", "somemail@gmail.com", "123456789");
+
+        exFile1.addGetterCategory(category1);
+       // exFile1.addGetterCategory(category2);
+      //  exFile2.addGetterCategory(category1);
+        exFile2.addGetterCategory(category2);
+
+        for(int i = 0; i<exFile1.getGetter_category().size(); i++){
+            System.err.println(exFile1.getGetter_category().get(i).getName());
+        }
+        for(int i = 0; i<exFile2.getGetter_category().size(); i++){
+            System.err.println(exFile2.getGetter_category().get(i).getName());
+        }
+
+        User user = new User("Admin", "1111111", "Firstadmin", Role.ADMIN, "Surname", "Patronymic", "somemail@gmail.com", "45678912378");
         department1.addUser(user);
         subdivision1.addUser(user);
+
 
         user.setDepartment(department1);
         user.setSubdivision(subdivision1);

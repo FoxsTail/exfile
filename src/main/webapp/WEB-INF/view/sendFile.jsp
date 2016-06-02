@@ -31,6 +31,7 @@
         </tr>
         <tr>
                 <%-- TODO:сделать, чтобы деп и саб подгружались из реальности, а не хранились на вьюшке--%>
+                    <td>Sender subdivision:</td>
             <td><form:select path="sender_subdivision_trans" >
                 <form:option value="0" label="Choose a subdivision: "/>
                 <form:option value="1" label="Right" />
@@ -38,6 +39,7 @@
             </form:select></td>
         </tr>
         <tr>
+            <td>Sender department:</td>
             <td><form:select path="sender_department_trans">
                 <form:option value="0" label="Choose a department:" />
                 <form:option value="1" label="Finance" />
@@ -47,12 +49,33 @@
 
         <tr>
             <td>Document category:</td>
-                <%-- <td><form:select path="category">
-                   <form:option value="0" label="Choose a department:" />
-                   <form:option value="1" label="Finance" />
-                   <form:option value="2" label="Law" />
-                 </form:select></td>--%>
+          <td><form:select path="value_categories" multiple="multiple">
+               <form:option value="0" label="Choose your category" disabled="true"/>
+               <form:option value="1" label="One" selected = "selected"/>
+               <form:option value="2" label="Two"/>
+               <form:option value="3" label="Three"/>
+           </form:select></td>
         </tr>
+
+
+        <tr>
+            <td>Document subdivision:</td>
+            <td><form:select path="value_subdivisions" multiple="multiple">
+                <form:option value="0" label="Choose your subdivision" disabled="true"/>
+                <form:option value="1" label="Right" selected = "selected"/>
+                <form:option value="2" label="Left"/>
+            </form:select></td>
+        </tr>
+
+        <tr>
+            <td>Document subdivision:</td>
+            <td><form:select path="value_departments" multiple="multiple">
+                <form:option value="0" label="Choose your department" disabled="true"/>
+                <form:option value="1" label="Finance" selected = "selected"/>
+                <form:option value="2" label="Law"/>
+            </form:select></td>
+        </tr>
+
         <tr>
             <td>Info about document:</td>
                 <%--  <td><form:input type="text" name="about" path="about" placeholder="About" /></td>

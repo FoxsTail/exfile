@@ -15,6 +15,8 @@ import ua.alice.repository.DepartmentJpaRepository;
 import ua.alice.repository.SubdivisionJpaRepository;
 import ua.alice.repository.UserJpaRepository;
 
+import javax.validation.Valid;
+
 /**
  * Created by Лис on 26.05.2016.
  */
@@ -29,7 +31,7 @@ public class AuthorizationController {
     private SubdivisionJpaRepository subdivisionJpaRepository;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView registration(@ModelAttribute("user") User user, BindingResult bindingResult){
+    public ModelAndView registration(@Valid @ModelAttribute("user") User user, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return new ModelAndView("registration");
