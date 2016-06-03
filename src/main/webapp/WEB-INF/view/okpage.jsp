@@ -12,7 +12,15 @@
 </head>
 <body>
 It was hard, but you did it!<br>
+<%--${message};--%>
+${files.name};
+${files.path};
+${files.date};
+${files.sender_subdivision.name};
+
 <a href="/web/send"><button>Back</button></a>
 </body>
+
+
 
 </html>

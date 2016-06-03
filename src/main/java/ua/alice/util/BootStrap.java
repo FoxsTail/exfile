@@ -34,14 +34,14 @@ public class BootStrap {
 
         System.err.println("iniiiiiiiiiiiiiiiiiiiit");
 
-        ExFile exFile1 = new ExFile("firstFile", 10, "ololo");
+       /* ExFile exFile1 = new ExFile("firstFile", 10, "ololo");
         ExFile exFile2 = new ExFile("secondFile", 20, "alala");
         ExFile exFile3 = new ExFile("thirdFile", 25, "alala");
 
         exFile1.setFile(new File("FirstFile"));
         exFile2.setFile(new File("SecondFile"));
         exFile3.setFile(new File("3File"));
-
+*/
         Department department1 = new Department("Finance");
         Department department2 = new Department("Law");
 
@@ -63,7 +63,7 @@ public class BootStrap {
         subdivisionJpaRepository.save(subdivision1);
         subdivisionJpaRepository.save(subdivision2);
 
-        exFile1.setSender_department(department1);
+  /*      exFile1.setSender_department(department1);
         exFile2.setSender_department(department2);
 
         exFile1.setSender_subdivision(subdivision1);
@@ -82,7 +82,7 @@ public class BootStrap {
         }
         for(int i = 0; i<exFile2.getGetter_category().size(); i++){
             System.err.println(exFile2.getGetter_category().get(i).getName());
-        }
+        }*/
 
         User user = new User("Admin", "1111111", "Firstadmin", Role.ADMIN, "Surname", "Patronymic", "somemail@gmail.com", "45678912378");
         department1.addUser(user);

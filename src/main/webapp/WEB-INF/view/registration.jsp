@@ -27,32 +27,32 @@
     <table>
         <tr>
             <td><form:input type="text" name="login" path="login" placeholder="Login" />
-            <br/><form:errors path="login"/></td>
+            <br/><form:errors path="login" cssClass="error"/></td>
         </tr>
         <tr>
             <td><form:input type="password" name="password" path="password" placeholder="Password"/>
-            <br/><form:errors path="password"/></td>
+            <br/><form:errors path="password" cssClass="error"/></td>
         </tr>
         <tr>
             <td><form:input type="text" name="name" path="name" placeholder="Name"/>
-            <br/><form:errors path="name"/></td>
+            <br/><form:errors path="name" cssClass="error"/></td>
         </tr>
         <tr>
             <td><form:input type="text" name="surname" path="surname" placeholder="Surname"/>
-            <br/><form:errors path="surname"/></td>
+            <br/><form:errors path="surname" cssClass="error"/></td>
         </tr>
         <tr>
             <td><form:input type="text" name="patronymic" path="patronymic" placeholder="Patronymic"/>
-            <br/><form:errors path="patronymic"/></td>
+            <br/><form:errors path="patronymic" cssClass="error"/></td>
         </tr>
         <tr>
             <td><form:input type="text" name="email" path="email" placeholder="Email"/>
-            <br/><form:errors path="email"/></td>
+            <br/><form:errors path="email" cssClass="error"/></td>
         </tr>
 
         <tr>
             <td><form:input type="text" name="inn" path="inn" placeholder="INN"/>
-            <br/><form:errors path="inn"/></td>
+            <br/><form:errors path="inn" cssClass="error"/></td>
         </tr>
         <tr>
                 <%-- TODO:сделать, чтобы деп и саб подгружались из реальности, а не хранились на вьюшке--%>
@@ -61,7 +61,7 @@
                         <form:option value="1" label="Right" />
                         <form:option value="2" label="Left" />
                     </form:select>
-                        <br/><form:errors path="subdivision_trans"/>
+                        <br/><form:errors path="subdivision_trans" cssClass="error"/>
                     </td>
         </tr>
         <tr>
@@ -70,7 +70,7 @@
                 <form:option value="1" label="Finance" />
                 <form:option value="2" label="Law" />
             </form:select>
-                <br/><form:errors path="department_trans"/>
+                <br/><form:errors path="department_trans" cssClass="error"/>
             </td>
         </tr>
 

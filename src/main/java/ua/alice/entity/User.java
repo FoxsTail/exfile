@@ -11,6 +11,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -34,9 +36,6 @@ public class User {
     @Column(name = "name_user")
     private String name;
 
-    @Column(name = "role_user")
-    private Role role;
-
     @Size(min = 2, max = 20)
     @Pattern(regexp = "[A-Z][a-z]+")
     @Column(name = "surname_user")
@@ -53,7 +52,7 @@ public class User {
 
     @Column(name = "inn_user")
     private String inn;
-
+//---------//
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_subdivision")
     private Subdivision subdivision;
@@ -61,6 +60,12 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_department")
     private Department department;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<ExFile> exFiles = new ArrayList<>();
+//-----------//
+    @Column(name = "role_user")
+    private Role role;
 
     @Column(name = "block_status")
     private Boolean blocked_Y_N = false;
@@ -73,16 +78,12 @@ public class User {
     @Transient
     private String subdivision_trans;
 
+
+//-----------constructors
+
     public User() {
     }
 
-  /*  public User(String login, String password, String name, Role role) {
-        this.login = login;
-        this.password = password;
-        this.name = name;
-        this.role = role;
-    }
-*/
 
     public User(String login, String password, String name, Role role, String surname, String patronymic, String email, String inn) {
         this.login = login;
@@ -93,6 +94,28 @@ public class User {
         this.patronymic = patronymic;
         this.email = email;
         this.inn = inn;
+    }
+
+//-------------methods
+
+    public ExFile getLastAddedFile(){
+        return exFiles.get(exFiles.size()-1);
+    }
+    public void addExFile(ExFile exFile){
+        exFile.setUser(this);
+        exFiles.add(exFile);
+    }
+
+
+//---------------getters and setters
+
+
+    public List<ExFile> getExFiles() {
+        return exFiles;
+    }
+
+    public void setExFiles(List<ExFile> exFiles) {
+        this.exFiles = exFiles;
     }
 
     public void setLogin(String login) {

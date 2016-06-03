@@ -1,8 +1,13 @@
 package ua.alice.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //TODO: заменить ручные закидки на подгрузку информации файла
@@ -14,17 +19,22 @@ public class ExFile {
     @Column(name = "file_id")
     private Long id;
 
-    @Column(name = "file_file")
-    private File file;
+    @Column(name = "file_path")
+    private String path;
 
     @Column(name = "file_name")
     private String name;
 
     @Column(name = "size_file")
-    private Integer size;
+    private Long size;
 
+    @Size(min = 2, max = 20)
+    @Pattern(regexp = "[A-Z][a-z]+")
     @Column(name = "about_file")
     private String about;
+
+    @Column(name = "file_add_datatime")
+    private String date;
 
     @ManyToOne
     @JoinColumn(name = "id_subdivision")
@@ -34,11 +44,9 @@ public class ExFile {
     @JoinColumn(name = "id_department")
     private Department sender_department;
 
-    @Transient
-    private String sender_department_trans;
-
-    @Transient
-    private String sender_subdivision_trans;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exFile", cascade = CascadeType.ALL)
     private List<Subdivision> getter_subdivisions = new ArrayList<>();
@@ -49,11 +57,13 @@ public class ExFile {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "exFile", cascade = CascadeType.ALL)
     private List<Category> getter_category = new ArrayList<>();
 
-
-/*    @ManyToMany
+       /*    @ManyToMany
     @JoinTable(name = "getter_category__exFiles", joinColumns = @JoinColumn(name="file_id", referencedColumnName="id"),
             inverseJoinColumns = @JoinColumn(name="id_category", referencedColumnName="id"))
     private List<Category> getter_category = new ArrayList<>();*/
+
+    @Transient
+    private MultipartFile multipartFilefile;
 
     @Transient
     private String[] value_categories;
@@ -65,10 +75,11 @@ public class ExFile {
     private String[] value_departments;
 
 
+
     public ExFile() {
     }
 
-    public ExFile(String name, Integer size, String about) {
+    public ExFile(String name, Long size, String about) {
         this.name = name;
         this.size = size;
         this.about = about;
@@ -80,21 +91,57 @@ public class ExFile {
     }
 */
 
-    public void addGetterCategory(Category category){
+
+    public void addGetterCategory(Category category) {
         category.setExFile(this);
         getter_category.add(category);
     }
 
-    public void addGetterSubdivision(Subdivision subdivision){
+    public void addGetterSubdivision(Subdivision subdivision) {
         subdivision.setExFile(this);
         getter_subdivisions.add(subdivision);
     }
 
-    public void addGetterDepartment(Department department){
+    public void addGetterDepartment(Department department) {
         department.setExFile(this);
         getter_departments.add(department);
     }
 
+
+//------------------------getters & setters
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public MultipartFile getMultipartFilefile() {
+        return multipartFilefile;
+    }
+
+    public void setMultipartFilefile(MultipartFile multipartFilefile) {
+        this.multipartFilefile = multipartFilefile;
+    }
 
     public Long getId() {
         return id;
@@ -102,14 +149,6 @@ public class ExFile {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
     }
 
     public String getName() {
@@ -120,11 +159,11 @@ public class ExFile {
         this.name = name;
     }
 
-    public Integer getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 
@@ -152,21 +191,6 @@ public class ExFile {
         this.sender_department = sender_department;
     }
 
-    public String getSender_department_trans() {
-        return sender_department_trans;
-    }
-
-    public void setSender_department_trans(String sender_department_trans) {
-        this.sender_department_trans = sender_department_trans;
-    }
-
-    public String getSender_subdivision_trans() {
-        return sender_subdivision_trans;
-    }
-
-    public void setSender_subdivision_trans(String sender_subdivision_trans) {
-        this.sender_subdivision_trans = sender_subdivision_trans;
-    }
 
     public List<Subdivision> getGetter_subdivisions() {
         return getter_subdivisions;
@@ -215,7 +239,6 @@ public class ExFile {
     public void setValue_categories(String[] value_categories) {
         this.value_categories = value_categories;
     }
-
 
 
 }

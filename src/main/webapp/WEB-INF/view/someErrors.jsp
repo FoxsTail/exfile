@@ -11,6 +11,7 @@
     <title></title>
 </head>
 <body>
-No
+No, ${message}
+<a href="/web/send"><button>Back</button></a>
 </body>
 </html>
