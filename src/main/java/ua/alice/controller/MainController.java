@@ -99,9 +99,6 @@ public class MainController {
             SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy hh:mm");
             exFile.setDate(format1.format(new Date()));
 
-            System.err.println(exFile.getPath() + "--------------");
-            System.err.println(exFile.getName()+ "--------------");
-
 //-----------//
             Category category;
             for (String s : exFile.getValue_categories()) {
@@ -125,8 +122,8 @@ public class MainController {
             User user = getCurrentUser();
             exFile.setUser(user);
 //----//
-            Department dep1 = departmentJpaRepository.findOne(exFile.getUser().getDepartment().getId());
-            Subdivision sub1 = subdivisionJpaRepository.findOne(exFile.getUser().getSubdivision().getId());
+            Department dep1 = departmentJpaRepository.findOne(exFile.getUser().getDepartment().getIdd());
+            Subdivision sub1 = subdivisionJpaRepository.findOne(exFile.getUser().getSubdivision().getIds());
 
             exFile.setSender_subdivision(sub1);
             exFile.setSender_department(dep1);

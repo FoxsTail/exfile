@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Лис
@@ -17,6 +18,11 @@ ${files.name};
 ${files.path};
 ${files.date};
 ${files.sender_subdivision.name};
+
+<c:forEach var="cat" items="${files.getter_category}">
+  ${cat.name}
+--------------
+</c:forEach>
 
 <a href="/web/send"><button>Back</button></a>
 </body>

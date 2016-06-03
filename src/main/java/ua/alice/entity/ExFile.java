@@ -48,19 +48,20 @@ public class ExFile {
     @JoinColumn(name = "id_user")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exFile", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "exFiles_getter_subdivisions", joinColumns = @JoinColumn(name = "id", referencedColumnName = "file_id"),
+            inverseJoinColumns = @JoinColumn(name = "ids", referencedColumnName = "id_subdivision"))
     private List<Subdivision> getter_subdivisions = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exFile", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "exFiles_getter_departments", joinColumns = @JoinColumn(name = "id", referencedColumnName = "file_id"),
+            inverseJoinColumns = @JoinColumn(name = "idd", referencedColumnName = "id_department"))
     private List<Department> getter_departments = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "exFile", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "exFiles_getter_category", joinColumns = @JoinColumn(name = "id", referencedColumnName = "file_id"),
+            inverseJoinColumns = @JoinColumn(name = "idc", referencedColumnName = "id_category"))
     private List<Category> getter_category = new ArrayList<>();
-
-       /*    @ManyToMany
-    @JoinTable(name = "getter_category__exFiles", joinColumns = @JoinColumn(name="file_id", referencedColumnName="id"),
-            inverseJoinColumns = @JoinColumn(name="id_category", referencedColumnName="id"))
-    private List<Category> getter_category = new ArrayList<>();*/
 
     @Transient
     private MultipartFile multipartFilefile;
@@ -75,7 +76,6 @@ public class ExFile {
     private String[] value_departments;
 
 
-
     public ExFile() {
     }
 
@@ -85,28 +85,21 @@ public class ExFile {
         this.about = about;
     }
 
-   /* public void addGetterCategory(Category category){
-        category.getExFile().add(this);
-        getter_category.add(category);
-    }
-*/
-
-
     public void addGetterCategory(Category category) {
-        category.setExFile(this);
+        category.addFile(this);
         getter_category.add(category);
     }
+
 
     public void addGetterSubdivision(Subdivision subdivision) {
-        subdivision.setExFile(this);
+        subdivision.addFile(this);
         getter_subdivisions.add(subdivision);
     }
 
     public void addGetterDepartment(Department department) {
-        department.setExFile(this);
+        department.addFile(this);
         getter_departments.add(department);
     }
-
 
 //------------------------getters & setters
 

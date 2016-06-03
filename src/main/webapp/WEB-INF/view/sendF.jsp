@@ -52,7 +52,7 @@
         </tr>
 
         <tr>
-            <td>Document subdivision:</td>
+            <td>Document departments:</td>
             <td><form:select path="value_departments" multiple="multiple">
                 <form:option value="0" label="Choose your department" disabled="true"/>
                 <form:option value="1" label="Finance" selected="selected"/>

@@ -12,7 +12,7 @@ public class Subdivision {
     @Id
     @GeneratedValue
     @Column(name = "id_subdivision")
-    private Integer id;
+    private Integer ids;
 
     @Column(name = "name_subdivision", length = 60)
     private String name;
@@ -20,9 +20,9 @@ public class Subdivision {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subdivision", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "file_id")
-    private ExFile exFile;
+    @ManyToMany( fetch = FetchType.EAGER, mappedBy = "getter_subdivisions", cascade = CascadeType.ALL)
+    private List<ExFile> exFiles = new ArrayList<>();
+
 
 
     Subdivision(){ }
@@ -30,29 +30,35 @@ public class Subdivision {
     public Subdivision(String name, List<User> users) {
         this.name = name;
         this.users = users;
-
     }
 
     public Subdivision(String name) {
         this.name = name;
     }
 
+//------methods
     public void addUser(User user){
         user.setSubdivision(this);
         users.add(user);
     }
 
+    public void addFile(ExFile exFile){
+        exFiles.add(exFile);
+    }
 
-    public void setId(Integer id) {
-        this.id = id;
+ //----------------getters and setters
+
+
+    public Integer getIds() {
+        return ids;
+    }
+
+    public void setIds(Integer ids) {
+        this.ids = ids;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {
@@ -67,11 +73,11 @@ public class Subdivision {
         return users;
     }
 
-    public ExFile getExFile() {
-        return exFile;
+    public List<ExFile> getExFiles() {
+        return exFiles;
     }
 
-    public void setExFile(ExFile exFile) {
-        this.exFile = exFile;
+    public void setExFiles(List<ExFile> exFiles) {
+        this.exFiles = exFiles;
     }
 }

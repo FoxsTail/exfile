@@ -14,7 +14,7 @@ public class Category {
     @Id
     @GeneratedValue
     @Column(name = "id_category")
-    private Integer id;
+    private Integer idc;
 
     @Column(name = "name_category", length=60)
     private String name;
@@ -23,8 +23,12 @@ public class Category {
     @JoinColumn(name = "file_id")
     private ExFile exFile;
 
-/*    @ManyToMany(mappedBy = "getter_category")
-    private List<ExFile> exFiles = new ArrayList<>();*/
+
+/*   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+   @JoinTable(name = "exFiles_getter_category", joinColumns = @JoinColumn(name = "id_category", referencedColumnName = "id"),
+           inverseJoinColumns = @JoinColumn(name = "file_id", referencedColumnName = "id"))*/
+    @ManyToMany( fetch = FetchType.EAGER, mappedBy = "getter_category", cascade = CascadeType.ALL)
+    private List<ExFile> exFiles = new ArrayList<>();
 
     public Category(){ }
 
@@ -32,21 +36,22 @@ public class Category {
         this.name = name;
     }
 
-/*
     public void addFile(ExFile exFile){
         exFiles.add(exFile);
     }
-*/
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getIdc() {
+        return idc;
     }
+
+    public void setIdc(Integer idc) {
+        this.idc = idc;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
-    public Integer getId() {
-        return id;
-    }
+
 
     public String getName() {
         return name;
@@ -58,6 +63,14 @@ public class Category {
 
     public void setExFile(ExFile exFile) {
         this.exFile = exFile;
+    }
+
+    public List<ExFile> getExFiles() {
+        return exFiles;
+    }
+
+    public void setExFiles(List<ExFile> exFiles) {
+        this.exFiles = exFiles;
     }
 }
 
