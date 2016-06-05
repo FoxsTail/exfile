@@ -33,42 +33,30 @@
             <td>Document category:</td>
             <td><form:select path="value_categories" multiple="multiple">
                 <form:option value="0" label="Choose your category" disabled="true"/>
-                <form:option value="1" label="One" selected="selected"/>
-                <form:option value="2" label="Two"/>
-                <form:option value="3" label="Three"/>
+                <form:options items="${cat}"/>
             </form:select>
             </td>
         </tr>
-
 
         <tr>
             <td>Document subdivision:</td>
             <td><form:select path="value_subdivisions" multiple="multiple">
                 <form:option value="0" label="Choose your subdivision" disabled="true"/>
-                <form:option value="1" label="Right" selected="selected"/>
-                <form:option value="2" label="Left"/>
+                <form:options items="${sub}"/>
             </form:select>
             </td>
         </tr>
-
         <tr>
             <td>Document departments:</td>
             <td><form:select path="value_departments" multiple="multiple">
                 <form:option value="0" label="Choose your department" disabled="true"/>
-                <form:option value="1" label="Finance" selected="selected"/>
-                <form:option value="2" label="Law"/>
+                <form:options items="${dep}"/>
             </form:select>
             </td>
         </tr>
-
         <tr>
             <td> Please select a file to upload :</td>
-        </tr>
-        <tr>
             <td><form:input type="file" name="multipartFilefile" path="multipartFilefile"/></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Upload"/></td>
         </tr>
         <tr>
             <td><span><form:errors path="multipartFilefile" cssClass="error"/>
@@ -79,6 +67,9 @@
             <td><form:input type="text" name="about" path="about" placeholder="File About"/>
                 <br> <form:errors path="about" cssClass="error"/>
             </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Upload"/></td>
         </tr>
     </form:form>
 

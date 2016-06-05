@@ -1,10 +1,12 @@
 package ua.alice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,8 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 @Controller
@@ -47,14 +50,21 @@ public class MainController {
 
     @RequestMapping("/users")
     public ModelAndView users() {
+        Sort sort = new Sort("lastName", "firstName", "patronymic");
         List<User> users = userJpaRepository.findAll();
-
-        System.err.println("--------------------");
-        for (User user : users) {
-            System.err.println("---------------------------" + user.getLogin());
-        }
-        //на страничку такую-то, с таким-то параметром, такие-то данные
         return new ModelAndView("users", "users", users);
+    }
+
+    @RequestMapping("/users/{id}")
+    public ModelAndView student(@PathVariable("id") Long id) {
+        User user = userJpaRepository.findOne(id);
+        return new ModelAndView("user", "user", user);
+    }
+
+    @RequestMapping("/download")
+    public  ModelAndView uploadFile(){
+        List<ExFile> files = exFileJpaRepository.findAll();
+        return new ModelAndView("download", "files", files);
     }
 
 
@@ -146,7 +156,31 @@ public class MainController {
         User user =  getCurrentUser();
         user.addExFile(new ExFile());
 
-        return new ModelAndView("sendF", "uploadForm", user.getLastAddedFile());
+        ModelAndView modelAndView = new ModelAndView("sendF");
+        List<Subdivision> subdivisions = subdivisionJpaRepository.findAll();
+        Map<Integer, String> subMap = new HashMap<>();
+        for (Subdivision s : subdivisions) {
+            subMap.put(s.getIds(), s.getName());
+        }
+
+        List<Department> departments = departmentJpaRepository.findAll();
+        Map<Integer, String> depMap = new HashMap<>();
+        for (Department d : departments) {
+            depMap.put(d.getIdd(), d.getName());
+        }
+
+        List<Category> categories = categoryJpaRepository.findAll();
+        Map<Integer, String> catMap = new HashMap<>();
+        for(Category c: categories){
+            catMap.put(c.getIdc(), c.getName());
+        }
+
+        modelAndView.addObject("sub", subMap);
+        modelAndView.addObject("dep", depMap);
+        modelAndView.addObject("cat", catMap);
+        modelAndView.addObject("uploadForm", user.getLastAddedFile());
+
+        return modelAndView;
 
     }
 

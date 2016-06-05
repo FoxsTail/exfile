@@ -18,11 +18,16 @@ public class Department {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
-    @ManyToMany( fetch = FetchType.EAGER, mappedBy = "getter_departments", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "getter_departments", cascade = CascadeType.ALL)
     private List<ExFile> exFiles = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "departments", cascade = CascadeType.ALL)
+    private List<Subdivision> subdivisions = new ArrayList<>();
 
-    public Department(){ }
+
+    //-----constructors
+    public Department() {
+    }
 
     public Department(String name, List<User> users) {
         this.name = name;
@@ -33,17 +38,21 @@ public class Department {
         this.name = name;
     }
 
-//---------methods
-    public void addUser(User user){
+    //---------methods
+    public void addUser(User user) {
         user.setDepartment(this);
         users.add(user);
     }
 
-    public void addFile(ExFile exFile){
+    public void addFile(ExFile exFile) {
         exFiles.add(exFile);
     }
 
- //-------------------getters and setters
+    public void addSubdivision(Subdivision subdivision) {
+        subdivisions.add(subdivision);
+    }
+
+    //-------------------getters and setters
 
     public Integer getIdd() {
         return idd;
@@ -75,5 +84,13 @@ public class Department {
 
     public void setExFiles(List<ExFile> exFiles) {
         this.exFiles = exFiles;
+    }
+
+    public List<Subdivision> getSubdivisions() {
+        return subdivisions;
+    }
+
+    public void setSubdivisions(List<Subdivision> subdivisions) {
+        this.subdivisions = subdivisions;
     }
 }

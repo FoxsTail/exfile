@@ -1,7 +1,8 @@
 package ua.alice.entity;
 
 import javax.persistence.*;
-import java.lang.Integer;import java.lang.String;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -20,12 +21,18 @@ public class Subdivision {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "subdivision", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
-    @ManyToMany( fetch = FetchType.EAGER, mappedBy = "getter_subdivisions", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "getter_subdivisions", cascade = CascadeType.ALL)
     private List<ExFile> exFiles = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "subdivision_category", joinColumns = @JoinColumn(name = "ids", referencedColumnName = "id_subdivision"),
+            inverseJoinColumns = @JoinColumn(name = "idd", referencedColumnName = "id_department"))
+    private List<Department> departments = new ArrayList<>();
 
+  //-----constructors
 
-    Subdivision(){ }
+    Subdivision() {
+    }
 
     public Subdivision(String name, List<User> users) {
         this.name = name;
@@ -36,17 +43,24 @@ public class Subdivision {
         this.name = name;
     }
 
-//------methods
-    public void addUser(User user){
+  //------methods
+    public void addUser(User user) {
         user.setSubdivision(this);
         users.add(user);
     }
 
-    public void addFile(ExFile exFile){
+    public void addFile(ExFile exFile) {
         exFiles.add(exFile);
     }
 
- //----------------getters and setters
+    public void addDepartment(Department... department) {
+        for (Department dep : department) {
+            dep.addSubdivision(this);
+            departments.add(dep);
+        }
+    }
+
+    //----------------getters and setters
 
 
     public Integer getIds() {
@@ -79,5 +93,13 @@ public class Subdivision {
 
     public void setExFiles(List<ExFile> exFiles) {
         this.exFiles = exFiles;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 }

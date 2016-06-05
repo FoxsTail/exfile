@@ -16,29 +16,32 @@ public class Category {
     @Column(name = "id_category")
     private Integer idc;
 
-    @Column(name = "name_category", length=60)
+    @Column(name = "name_category", length = 60)
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "file_id")
     private ExFile exFile;
 
-
-/*   @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-   @JoinTable(name = "exFiles_getter_category", joinColumns = @JoinColumn(name = "id_category", referencedColumnName = "id"),
-           inverseJoinColumns = @JoinColumn(name = "file_id", referencedColumnName = "id"))*/
-    @ManyToMany( fetch = FetchType.EAGER, mappedBy = "getter_category", cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "getter_category", cascade = CascadeType.ALL)
     private List<ExFile> exFiles = new ArrayList<>();
 
-    public Category(){ }
+    //-----constructors
+    public Category() {
+    }
 
     public Category(String name) {
         this.name = name;
     }
 
-    public void addFile(ExFile exFile){
+
+    //------methods
+    public void addFile(ExFile exFile) {
         exFiles.add(exFile);
     }
+
+    //--------------getters and setters
+
 
     public Integer getIdc() {
         return idc;
