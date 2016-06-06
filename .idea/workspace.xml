@@ -37,11 +37,91 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="okpage.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/okpage.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="561">
+              <caret line="12" column="92" selection-start-line="12" selection-start-column="92" selection-end-line="12" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3649374" vertical-offset="0" max-vertical-offset="1139">
-              <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+            <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1139">
+              <caret line="12" column="90" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/registration.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-71.92308" vertical-offset="0" max-vertical-offset="2023">
+              <caret line="110" column="6" selection-start-line="110" selection-start-column="6" selection-end-line="110" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sendF.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/sendF.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1496">
+              <caret line="12" column="92" selection-start-line="12" selection-start-column="92" selection-end-line="12" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="someErrors.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/someErrors.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="493">
+              <caret line="11" column="92" selection-start-line="11" selection-start-column="92" selection-end-line="11" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="1989">
+              <caret line="13" column="92" selection-start-line="13" selection-start-column="92" selection-end-line="13" selection-end-column="92" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/users.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8076925" vertical-offset="70" max-vertical-offset="1003">
+              <caret line="13" column="90" selection-start-line="13" selection-start-column="90" selection-end-line="13" selection-end-column="90" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="userSuccess.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/userSuccess.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.5783132" vertical-offset="61" max-vertical-offset="680">
+              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="files.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/files.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.8461537" vertical-offset="95" max-vertical-offset="969">
+              <caret line="13" column="92" selection-start-line="13" selection-start-column="92" selection-end-line="13" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -91,18 +171,18 @@
         <option value="$PROJECT_DIR$/src/main/java/ua/alice/controller/AuthorizationController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/alice/entity/ExFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/ua/alice/controller/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/users.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/registration.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/byepage.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/download.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/file.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/files.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/okpage.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/registration.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/sendF.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/someErrors.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/users.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/userSuccess.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/login.jsp" />
       </list>
     </option>
   </component>
@@ -995,12 +1075,12 @@
       <workItem from="1464983812843" duration="3685000" />
       <workItem from="1465059610785" duration="39465000" />
       <workItem from="1465200779446" duration="13916000" />
-      <workItem from="1465223209197" duration="11077000" />
+      <workItem from="1465223209197" duration="12058000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234496000" />
+    <option name="totallyTimeSpent" value="235477000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1024,7 +1104,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1044,7 +1124,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6411093" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6411093" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43393147" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23071104" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1371,70 +1451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/download.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7567084" vertical-offset="597" max-vertical-offset="1173">
-          <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/file.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7567084" vertical-offset="461" max-vertical-offset="1037">
-          <caret line="52" column="10" selection-start-line="52" selection-start-column="10" selection-end-line="52" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/files.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.115385" vertical-offset="146" max-vertical-offset="952">
-          <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/okpage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="544">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/registration.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-71.92308" vertical-offset="0" max-vertical-offset="2023">
-          <caret line="110" column="6" selection-start-line="110" selection-start-column="6" selection-end-line="110" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/sendF.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7567084" vertical-offset="903" max-vertical-offset="1479">
-          <caret line="78" column="6" selection-start-line="78" selection-start-column="6" selection-end-line="78" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/someErrors.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077" vertical-offset="0" max-vertical-offset="476">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.26923" vertical-offset="1396" max-vertical-offset="1972">
-          <caret line="107" column="6" selection-start-line="107" selection-start-column="6" selection-end-line="107" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/styles/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="35139" max-vertical-offset="115022">
@@ -1470,26 +1486,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ua/alice/entity/ExFilesInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14529915" vertical-offset="0" max-vertical-offset="585">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/byepage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="425">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="442">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/userSuccess.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/download.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.80322003" vertical-offset="61" max-vertical-offset="663">
-          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="1190">
+          <caret line="13" column="92" selection-start-line="13" selection-start-column="92" selection-end-line="13" selection-end-column="92" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/users.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/file.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.21645796" vertical-offset="376" max-vertical-offset="986">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1054">
+          <caret line="12" column="92" selection-start-line="12" selection-start-column="92" selection-end-line="12" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/files.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.8461537" vertical-offset="95" max-vertical-offset="969">
+          <caret line="13" column="92" selection-start-line="13" selection-start-column="92" selection-end-line="13" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1139">
+          <caret line="12" column="90" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="90" />
           <folding />
         </state>
       </provider>
@@ -1502,18 +1542,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ua/alice/entity/ExFilesInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/okpage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14529915" vertical-offset="0" max-vertical-offset="585">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="561">
+          <caret line="12" column="92" selection-start-line="12" selection-start-column="92" selection-end-line="12" selection-end-column="92" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/login.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/registration.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3649374" vertical-offset="0" max-vertical-offset="1139">
-          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+        <state vertical-scroll-proportion="-71.92308" vertical-offset="0" max-vertical-offset="2023">
+          <caret line="110" column="6" selection-start-line="110" selection-start-column="6" selection-end-line="110" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/sendF.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8461537" vertical-offset="0" max-vertical-offset="1496">
+          <caret line="12" column="92" selection-start-line="12" selection-start-column="92" selection-end-line="12" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/someErrors.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="493">
+          <caret line="11" column="92" selection-start-line="11" selection-start-column="92" selection-end-line="11" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="1989">
+          <caret line="13" column="92" selection-start-line="13" selection-start-column="92" selection-end-line="13" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/users.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8076925" vertical-offset="70" max-vertical-offset="1003">
+          <caret line="13" column="90" selection-start-line="13" selection-start-column="90" selection-end-line="13" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/userSuccess.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5783132" vertical-offset="61" max-vertical-offset="680">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
           <folding />
         </state>
       </provider>

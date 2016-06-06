@@ -10,7 +10,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title></title>
+    <title>Users</title>
+  <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
 <div id="container">

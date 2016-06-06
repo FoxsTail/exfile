@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Success</title>
+  <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
 <div id="container">

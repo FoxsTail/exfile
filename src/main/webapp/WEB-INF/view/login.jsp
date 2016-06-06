@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Login</title>
-  <link rel="stylesheet" href="../../resources/styles/css/bootstrap.css"/>
+  <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
 <div id="container">

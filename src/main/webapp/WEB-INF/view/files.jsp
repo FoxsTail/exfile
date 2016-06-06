@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Files</title>
+    <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
 <div id="container">
