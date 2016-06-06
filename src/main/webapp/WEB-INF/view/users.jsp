@@ -13,6 +13,7 @@
     <title></title>
 </head>
 <body>
+<%@include file="menu.jsp"%>
 <sec:authentication var="principal" property="principal"/>
 <div id="container">
   <h2>Users</h2>

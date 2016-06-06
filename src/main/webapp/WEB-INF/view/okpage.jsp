@@ -11,6 +11,7 @@
 <head>
     <title></title>
 </head>
+<%@include file="menu.jsp"%>
 <body>
 It was hard, but you did it!<br>
 <%--${message};--%>

@@ -1,26 +1,29 @@
 package ua.alice.controller;
 
+import com.sun.glass.ui.Application;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ua.alice.entity.*;
 import ua.alice.repository.*;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -41,6 +44,8 @@ public class MainController {
     private SubdivisionJpaRepository subdivisionJpaRepository;
     @Autowired
     private CategoryJpaRepository categoryJpaRepository;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @RequestMapping("/files")
     public ModelAndView files() {
@@ -61,32 +66,76 @@ public class MainController {
         return new ModelAndView("user", "user", user);
     }
 
+    @RequestMapping("/profile")
+    public ModelAndView student() {
+        User user = getCurrentUser();
+        return new ModelAndView("profile", "user", user);
+    }
+
+    @RequestMapping(value = "/downloadPerDate", method = RequestMethod.POST)
+    public ModelAndView loadPerDate(@RequestParam("date") String dateString) {
+        SimpleDateFormat format1 = new SimpleDateFormat("dd\\MM\\yyyy");
+        String currentDate = format1.format(new Date());
+
+        if (dateString.isEmpty()) {
+            dateString = currentDate;
+        }
+        List<ExFile> filesAll = exFileJpaRepository.findAll();
+
+        List<ExFile> filesDate = new ArrayList<>();
+
+
+        for (ExFile exf : filesAll) {
+            if (exf.getDate().equals(dateString)) {
+                filesDate.add(exf);
+            }
+        }
+
+        List<ExFile> filesSort = sortFilesPerUser(filesDate);
+        return new ModelAndView("download", "files", filesSort);
+    }
+
     @RequestMapping("/download")
-    public  ModelAndView uploadFile(){
-        List<ExFile> files = exFileJpaRepository.findAll();
+    public ModelAndView uploadFile() {
+        List<ExFile> filesIn = exFileJpaRepository.findAll();
+        List<ExFile> files = sortFilesPerUser(filesIn);
+
         return new ModelAndView("download", "files", files);
     }
 
+    @RequestMapping("/load/{id}")
+    public void loadFromPage(@PathVariable("id") Long id, HttpServletResponse response) {
+        ExFile exFile = exFileJpaRepository.findOne(id);
 
+        ApplicationContext context = new FileSystemXmlApplicationContext();
+        Resource resource = context.getResource("file:" + exFile.getPath());
 
+        File file = new File(exFile.getPath());
+        try {
+            response.setHeader("Content-Disposition", "attachment; filename="
+                    + file.getName());
+            InputStream is = resource.getInputStream();
+            IOUtils.copy(is, response.getOutputStream());
+            //response.flushBuffer(); - подумать на этой бородой на досуге и постичь дзен
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @RequestMapping(value = "/sendF", method = RequestMethod.POST)
-    public ModelAndView sendF(@Valid @ModelAttribute("uploadForm") ExFile exFile,  BindingResult bindingResult) {
+    public ModelAndView sendF(@Valid @ModelAttribute("uploadForm") ExFile exFile, BindingResult bindingResult) {
 
-     if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return new ModelAndView("sendF");
         }
 
-       MultipartFile file = exFile.getMultipartFilefile();
+        MultipartFile file = exFile.getMultipartFilefile();
 
-        if (file.getOriginalFilename().contains("/")) {
-            return new ModelAndView( "someErrors");
-        }
         if (file.getOriginalFilename().contains("/")) {
             return new ModelAndView("someErrors");
         }
-
 
         if (!file.isEmpty()) {
 //---------------//
@@ -106,7 +155,7 @@ public class MainController {
             }
             exFile.setPath(location + file.getOriginalFilename());
 
-            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+            SimpleDateFormat format1 = new SimpleDateFormat("dd\\MM\\yyyy");
             exFile.setDate(format1.format(new Date()));
 
 //-----------//
@@ -139,8 +188,6 @@ public class MainController {
             exFile.setSender_department(dep1);
 
             exFileJpaRepository.save(exFile);
-
-            System.err.println(exFile.getSender_department().getName()+ "--------------");
             return new ModelAndView("okpage", "files", exFile);
 
         } else {
@@ -153,7 +200,7 @@ public class MainController {
     @RequestMapping(value = "/send", method = RequestMethod.GET)
     public ModelAndView provideUploadInfo() {
 
-        User user =  getCurrentUser();
+        User user = getCurrentUser();
         user.addExFile(new ExFile());
 
         ModelAndView modelAndView = new ModelAndView("sendF");
@@ -171,7 +218,7 @@ public class MainController {
 
         List<Category> categories = categoryJpaRepository.findAll();
         Map<Integer, String> catMap = new HashMap<>();
-        for(Category c: categories){
+        for (Category c : categories) {
             catMap.put(c.getIdc(), c.getName());
         }
 
@@ -184,7 +231,33 @@ public class MainController {
 
     }
 
-    public User getCurrentUser(){
+    @RequestMapping("/logout")
+    public ModelAndView logout() {
+        return new ModelAndView("byepage");
+    }
+
+
+    public List<ExFile> sortFilesPerUser(List<ExFile> filesIn){
+        List<ExFile> files = new ArrayList<>();
+        User user = getCurrentUser();
+        Subdivision subdivision = user.getSubdivision();
+        Department department = user.getDepartment();
+
+        for (ExFile ef : filesIn) {
+            for (Subdivision s : ef.getGetter_subdivisions()) {
+                if (s == subdivision) {
+                    for (Department d : ef.getGetter_departments()) {
+                        if (d == department) {
+                            files.add(ef);
+                        }
+                    }
+                }
+            }
+
+        }
+        return files;
+    }
+    public User getCurrentUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userJpaRepository.findUserByLogin(user.getLogin());
 

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Лис
@@ -12,6 +13,18 @@
     <title></title>
 </head>
 <body>
+<%@include file="menu.jsp" %>
+<br>
+<form:form action="/web/downloadPerDate" method="post">
+    <table>
+        <tr>
+            <td>Enter the date in format dd\mm\yyyy:</td>
+            <td><input type="text" name="date"></td>
+            <td><button type="submit">Search</button></td>
+            <br>
+        </tr>
+    </table>
+</form:form>
 <c:if test="${empty files}">
     <p>There are no files in database</p>
 </c:if>
@@ -26,19 +39,23 @@
                         ${file.name}<br>
                         ${file.sender_subdivision.name}<br>
                         ${file.sender_department.name}<br>
-                            <c:forEach var="cat" items="${file.getter_category}">
-                                ${cat.name}
-                            </c:forEach> <br>
+                    <c:forEach var="cat" items="${file.getter_category}">
+                        ${cat.name}
+                    </c:forEach> <br>
                         ${file.about}<br>
-                -----------------------------
+                    -----------------------------
                 </td>
                 <td>
-                    <button type="button">Download</button>
+                    <a href="/web/load/${file.id}">Download</a>
                 </td>
             </tr>
 
         </c:forEach>
     </table>
 </c:if>
+
+<a href="/web/send">
+    <button>Back</button>
+</a>
 </body>
 </html>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <form:form action="/auth/login" commandName="user">
-  ${user.login}, your registration was successful!<br />
+  <h2>${user.login}, your registration was successful!<br /></h2>
 
   <hr> Name : ${user.name} <br />
   Surname : ${user.surname} <br />

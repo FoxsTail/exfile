@@ -12,6 +12,7 @@
     <title></title>
 </head>
 <body>
+<%@include file="menu.jsp"%>
 <table>
     <form:form method="post" action="/web/sendF" modelAttribute="uploadForm" enctype="multipart/form-data">
         <tr>
