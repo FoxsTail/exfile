@@ -9,17 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Ok</title>
 </head>
-<%@include file="menu.jsp"%>
 <body>
-You successfully sent ${files.name} to
-<c:forEach var="cat" items="${files.getter_subdivisions}">
-  ${cat.name}
-</c:forEach> subdivision(s)!
-<a href="/web/send"><button>Back</button></a>
+<div id="container">
+    <%@include file="menu.jsp" %>
+    You successfully sent ${files.name} to
+    <c:forEach var="cat" items="${files.getter_subdivisions}">
+        ${cat.name}
+    </c:forEach> subdivision(s)!
+    <a href="/web/send">
+        <button>Back</button>
+    </a>
+</div>
 </body>
-
-
-
 </html>

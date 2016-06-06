@@ -13,36 +13,38 @@
     <title>Files</title>
 </head>
 <body>
-<%@include file="menu.jsp" %>
-<table>
-    <sec:authentication var="principal" property="principal"/>
+<div id="container">
+    <%@include file="menu.jsp" %>
+    <table>
+        <sec:authentication var="principal" property="principal"/>
 
-    <h2>Files</h2>
-    <hr/>
-    <c:if test="${empty files}">
-        <p>There are no users in database</p>
-    </c:if>
-    <c:if test="${not empty files}">
-        <table>
-            <tr>
-                <th>Full Name</th>
-            </tr>
-            <c:forEach items="${files}" var="file">
-                <c:if test='${principal.username}'>
-                    <c:set value="authUser" var="authUser"/>
-                </c:if>
+        <h2>Files</h2>
+        <hr/>
+        <c:if test="${empty files}">
+            <p>There are no users in database</p>
+        </c:if>
+        <c:if test="${not empty files}">
+            <table>
                 <tr>
-                    <td><a href="/web/files/${file.id}" class="${authUser}">
-                            ${file.name}\ ${file.sender_subdivision.name}\ ${file.sender_department.name}\<c:forEach
-                            var="cat" items="${file.getter_category}">
-                        ${cat.name}\
-                    </c:forEach> <br> ${file.about}</a></td>
+                    <th>Full Name</th>
                 </tr>
-                <c:set value="" var="authUser"/>
-            </c:forEach>
+                <c:forEach items="${files}" var="file">
+                    <c:if test='${principal.username}'>
+                        <c:set value="authUser" var="authUser"/>
+                    </c:if>
+                    <tr>
+                        <td><a href="/web/files/${file.id}" class="${authUser}">
+                                ${file.name}\ ${file.sender_subdivision.name}\ ${file.sender_department.name}\<c:forEach
+                                var="cat" items="${file.getter_category}">
+                            ${cat.name}\
+                        </c:forEach> <br> ${file.about}</a></td>
+                    </tr>
+                    <c:set value="" var="authUser"/>
+                </c:forEach>
 
-        </table>
-    </c:if>
-</table>
+            </table>
+        </c:if>
+    </table>
+</div>
 </body>
 </html>

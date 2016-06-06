@@ -11,6 +11,7 @@
     <title>Success</title>
 </head>
 <body>
+<div id="container">
 <form:form action="/auth/login" commandName="user">
   <h2>${user.login}, your registration was successful!<br /></h2>
 
@@ -24,9 +25,9 @@
   Password : ${user.password}<br />
 
 
-    <button type="submit">Ok=)</button>
+    <button type="submit">Log in</button>
 
 </form:form>
-
+</div>
 </body>
 </html>

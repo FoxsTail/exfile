@@ -10,8 +10,10 @@
 <html>
 <head>
     <title>Login</title>
+  <link rel="stylesheet" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
+<div id="container">
   <form action="/auth/login" method="post">
     <h2>Please log in</h2>
     <hr/>
@@ -54,5 +56,6 @@
     </p>
   </form>
   <a href="/auth/registration"><button>Registration</button></a>
+  </div>
 </body>
 </html>

@@ -11,7 +11,9 @@
     <title></title>
 </head>
 <body>
+<div id="container">
 Bye!=)
 <a href="/auth/login"><button>Log in</button></a>
+  </div>
 </body>
 </html>

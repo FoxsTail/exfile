@@ -10,9 +10,13 @@
 <head>
     <title></title>
 </head>
-<%@include file="menu.jsp"%>
 <body>
-No, ${message}
-<a href="/web/send"><button>Back</button></a>
+<div id="container">
+    <%@include file="menu.jsp" %>
+    No, ${message}
+    <a href="/web/send">
+        <button>Back</button>
+    </a>
+</div>
 </body>
 </html>

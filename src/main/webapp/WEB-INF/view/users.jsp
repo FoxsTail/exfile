@@ -13,9 +13,10 @@
     <title></title>
 </head>
 <body>
+<div id="container">
 <%@include file="menu.jsp"%>
 <sec:authentication var="principal" property="principal"/>
-<div id="container">
+
   <h2>Users</h2>
   <hr/>
   <c:if test="${empty users}">

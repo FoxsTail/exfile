@@ -12,7 +12,7 @@
     <title>File</title>
 </head>
 <body>
-
+<div id="container">
 <table>
 
 
@@ -50,5 +50,6 @@
 <a href="/web/files">
     <button>Back</button>
 </a>
+    </div>
 </body>
 </html>

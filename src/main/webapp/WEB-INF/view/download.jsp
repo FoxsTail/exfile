@@ -13,6 +13,7 @@
     <title></title>
 </head>
 <body>
+<div id="container">
 <%@include file="menu.jsp" %>
 <br>
 <form:form action="/web/downloadPerDate" method="post">
@@ -57,5 +58,6 @@
 <a href="/web/send">
     <button>Back</button>
 </a>
+    </div>
 </body>
 </html>

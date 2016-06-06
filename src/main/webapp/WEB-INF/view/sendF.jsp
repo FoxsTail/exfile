@@ -12,68 +12,70 @@
     <title></title>
 </head>
 <body>
-<%@include file="menu.jsp"%>
-<table>
-    <form:form method="post" action="/web/sendF" modelAttribute="uploadForm" enctype="multipart/form-data">
-        <tr>
-            <td>
-                Sender subdivision:
-            </td>
-            <td>
-                    ${uploadForm.user.subdivision.name}
-            </td>
-        </tr>
-        <tr>
-            <td>Sender department:</td>
-            <td>
-                    ${uploadForm.user.department.name}
-            </td>
-        </tr>
+<div id="container">
+    <%@include file="menu.jsp" %>
+    <table>
+        <form:form method="post" action="/web/sendF" modelAttribute="uploadForm" enctype="multipart/form-data">
+            <tr>
+                <td>
+                    Sender subdivision:
+                </td>
+                <td>
+                        ${uploadForm.user.subdivision.name}
+                </td>
+            </tr>
+            <tr>
+                <td>Sender department:</td>
+                <td>
+                        ${uploadForm.user.department.name}
+                </td>
+            </tr>
 
-        <tr>
-            <td>Document category:</td>
-            <td><form:select path="value_categories" multiple="multiple">
-                <form:option value="0" label="Choose your category" disabled="true"/>
-                <form:options items="${cat}"/>
-            </form:select>
-            </td>
-        </tr>
+            <tr>
+                <td>Document category:</td>
+                <td><form:select path="value_categories" multiple="multiple">
+                    <form:option value="0" label="Choose your category" disabled="true"/>
+                    <form:options items="${cat}"/>
+                </form:select>
+                </td>
+            </tr>
 
-        <tr>
-            <td>Document subdivision:</td>
-            <td><form:select path="value_subdivisions" multiple="multiple">
-                <form:option value="0" label="Choose your subdivision" disabled="true"/>
-                <form:options items="${sub}"/>
-            </form:select>
-            </td>
-        </tr>
-        <tr>
-            <td>Document departments:</td>
-            <td><form:select path="value_departments" multiple="multiple">
-                <form:option value="0" label="Choose your department" disabled="true"/>
-                <form:options items="${dep}"/>
-            </form:select>
-            </td>
-        </tr>
-        <tr>
-            <td> Please select a file to upload :</td>
-            <td><form:input type="file" name="multipartFilefile" path="multipartFilefile"/></td>
-        </tr>
-        <tr>
-            <td><span><form:errors path="multipartFilefile" cssClass="error"/>
+            <tr>
+                <td>Document subdivision:</td>
+                <td><form:select path="value_subdivisions" multiple="multiple">
+                    <form:option value="0" label="Choose your subdivision" disabled="true"/>
+                    <form:options items="${sub}"/>
+                </form:select>
+                </td>
+            </tr>
+            <tr>
+                <td>Document departments:</td>
+                <td><form:select path="value_departments" multiple="multiple">
+                    <form:option value="0" label="Choose your department" disabled="true"/>
+                    <form:options items="${dep}"/>
+                </form:select>
+                </td>
+            </tr>
+            <tr>
+                <td> Please select a file to upload :</td>
+                <td><form:input type="file" name="multipartFilefile" path="multipartFilefile"/></td>
+            </tr>
+            <tr>
+                <td><span><form:errors path="multipartFilefile" cssClass="error"/>
 		</span></td>
-        </tr>
-        <tr>
-            <td>Enter file about</td>
-            <td><form:input type="text" name="about" path="about" placeholder="File About"/>
-                <br> <form:errors path="about" cssClass="error"/>
-            </td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Upload"/></td>
-        </tr>
-    </form:form>
+            </tr>
+            <tr>
+                <td>Enter file about</td>
+                <td><form:input type="text" name="about" path="about" placeholder="File About"/>
+                    <br> <form:errors path="about" cssClass="error"/>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Upload"/></td>
+            </tr>
+        </form:form>
 
-</table>
+    </table>
+</div>
 </body>
 </html>
