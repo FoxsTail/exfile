@@ -13,16 +13,16 @@
     <title>Files</title>
 </head>
 <body>
-<%@include file="menu.jsp"%>
+<%@include file="menu.jsp" %>
 <table>
     <sec:authentication var="principal" property="principal"/>
-    <div id="container">
-        <h2>Users</h2>
-        <hr/>
-        <c:if test="${empty files}">
+
+    <h2>Files</h2>
+    <hr/>
+    <c:if test="${empty files}">
         <p>There are no users in database</p>
-        </c:if>
-        <c:if test="${not empty files}">
+    </c:if>
+    <c:if test="${not empty files}">
         <table>
             <tr>
                 <th>Full Name</th>
@@ -33,18 +33,16 @@
                 </c:if>
                 <tr>
                     <td><a href="/web/files/${file.id}" class="${authUser}">
-                            ${file.name} ${file.about} ${file.sender_subdivision.name}
-                    </a></td>
-                        <%--<c:if test="${student.room != null}">
-                          <td><a href="/web/rooms/${student.room.number}">
-                              ${student.room.number}
-                          </a></td>
-                        </c:if>--%>
+                            ${file.name}\ ${file.sender_subdivision.name}\ ${file.sender_department.name}\<c:forEach
+                            var="cat" items="${file.getter_category}">
+                        ${cat.name}\
+                    </c:forEach> <br> ${file.about}</a></td>
                 </tr>
                 <c:set value="" var="authUser"/>
             </c:forEach>
+
         </table>
-        </c:if>
+    </c:if>
 </table>
 </body>
 </html>

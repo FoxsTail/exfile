@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Лис
@@ -8,9 +9,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>File</title>
 </head>
 <body>
 
+<table>
+
+
+    <tr>
+        <td>File name:</td>
+        <td>${file.name}</td>
+    </tr>
+    <tr>
+        <td>Sender subdivision: <br> and department</td>
+        <td>${file.sender_subdivision.name},
+       ${file.sender_department.name}</td>
+    </tr>
+    <tr>
+        <td>File category:</td>
+        <td><c:forEach var="cat" items="${file.getter_category}">
+            ${cat.name}
+        </c:forEach> <br></td>
+    </tr>
+    <tr>
+        <td>What this file about:</td>
+        <td>${file.about}</td>
+    </tr>
+    <tr>
+        <td>The file was saved in:</td>
+        <td>${file.path}</td>
+    </tr>
+    <tr>
+        <td>Do you wand to download this file?</td>
+        <td>
+            <a href="/web/load/${file.id}">Download</a>
+        </td>
+
+    </tr>
+</table>
+<a href="/web/files">
+    <button>Back</button>
+</a>
 </body>
 </html>

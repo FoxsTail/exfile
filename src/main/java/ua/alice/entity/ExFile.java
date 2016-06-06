@@ -29,7 +29,7 @@ public class ExFile {
     private Long size;
 
     @Size(min = 2, max = 20)
-    @Pattern(regexp = "[A-Z][a-z]+")
+   // @Pattern(regexp = "[A-Z][a-z]+")
     @Column(name = "about_file")
     private String about;
 

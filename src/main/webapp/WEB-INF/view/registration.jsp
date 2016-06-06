@@ -8,10 +8,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
-<%--TODO: добавить связку дэп и саб в селектах, убрать баг: при ошибке валидации исчезают значения в селектах дэп и саб--%>
+
 <html>
 <head>
     <title>Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -57,13 +58,14 @@
     </tr>
 
         <tr>
-            <td><form:select path="department_trans" name="dep">
-                <form:option value="0" label="--- Select department---"/>
-                <form:options items="${dep}"/>
+            <td><form:select disabled="true" path="department_trans" name="dep">
+                <form:option  value="0" label="--- Select department---"/>
+                <%--<form:options items="${dep}"/>--%>
             </form:select>
                 <br/><form:errors path="department_trans" cssClass="error"/>
             </td>
         </tr>
+
 
         <tr>
             <td>
@@ -72,8 +74,39 @@
         </tr>
     </table>
 </form:form>
-<td><a href="/auth/login">
-    <button>Back</button>
-</a></td>
+
+<script type="text/javascript">
+    $(function(){
+        var sub = "${sub}"
+        <%--var dep = "${subDep}"--%>
+
+        var dep = {
+            1:{
+                1:'Finance',
+                2:'Law',
+                3:'Minister'
+            },
+            2:{
+                1:'Finance',
+                2:'Law'
+            }
+        };
+        console.log('1212121', sub)
+
+            $('#subdivision_trans').on('change', function(){
+                if(this.value != 0 && dep && typeof dep == 'object' && dep[this.value] && Object.keys(dep[this.value]).length) {
+                        $('#department_trans').prop( "disabled", false);
+                        $('.optionalDeps').detach();
+                        for (var i in dep[this.value]) {
+                            if (dep[this.value].hasOwnProperty(i)) {
+                                $('#department_trans').append('<option class=\"optionalDeps\" value=\"' + i + '\">' + dep[this.value][i] + '</option>')
+                            }
+                        }
+                }else {
+                    $('#department_trans').prop( "disabled", true);
+                }
+        })
+    })
+</script>
 </body>
 </html>

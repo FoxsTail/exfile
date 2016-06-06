@@ -9,12 +9,14 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import ua.alice.config.security.SecurityUser;
 import ua.alice.entity.*;
 import ua.alice.repository.*;
 
@@ -53,6 +55,13 @@ public class MainController {
         return new ModelAndView("files", "files", files);
     }
 
+    @RequestMapping("/files/{id}")
+    public ModelAndView filesPerID(@PathVariable("id") Long id) {
+        ExFile file = exFileJpaRepository.findOne(id);
+        return new ModelAndView("file", "file", file);
+    }
+
+
     @RequestMapping("/users")
     public ModelAndView users() {
         Sort sort = new Sort("lastName", "firstName", "patronymic");
@@ -61,15 +70,39 @@ public class MainController {
     }
 
     @RequestMapping("/users/{id}")
-    public ModelAndView student(@PathVariable("id") Long id) {
+    public ModelAndView userGetProfile(@PathVariable("id") Long id) {
         User user = userJpaRepository.findOne(id);
         return new ModelAndView("user", "user", user);
     }
 
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.POST)
+    public ModelAndView userUpdate(@PathVariable("id") Long id, @Valid @ModelAttribute("user") User user, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return new ModelAndView("studentprofile");
+        }
+        ModelAndView modelAndView = new ModelAndView("user");
+
+        User actual = userJpaRepository.findOne(id);
+            user.setRole(actual.getRole());
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            SecurityUser userDetails = (SecurityUser) authentication.getPrincipal();
+            userDetails.setEmail(user.getEmail());
+
+            userJpaRepository.save(user);
+
+        modelAndView.addObject("message", "Your profile was updated successfully!=)");
+        modelAndView.addObject("user", user);
+        return modelAndView;
+
+    }
+
     @RequestMapping("/profile")
-    public ModelAndView student() {
+    public ModelAndView profile() {
         User user = getCurrentUser();
-        return new ModelAndView("profile", "user", user);
+
+        return new ModelAndView("user", "user", user);
     }
 
     @RequestMapping(value = "/downloadPerDate", method = RequestMethod.POST)
@@ -237,7 +270,7 @@ public class MainController {
     }
 
 
-    public List<ExFile> sortFilesPerUser(List<ExFile> filesIn){
+    public List<ExFile> sortFilesPerUser(List<ExFile> filesIn) {
         List<ExFile> files = new ArrayList<>();
         User user = getCurrentUser();
         Subdivision subdivision = user.getSubdivision();
@@ -257,6 +290,7 @@ public class MainController {
         }
         return files;
     }
+
     public User getCurrentUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         user = userJpaRepository.findUserByLogin(user.getLogin());

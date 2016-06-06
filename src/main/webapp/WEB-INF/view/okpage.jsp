@@ -13,18 +13,10 @@
 </head>
 <%@include file="menu.jsp"%>
 <body>
-It was hard, but you did it!<br>
-<%--${message};--%>
-${files.name};
-${files.path};
-${files.date};
-${files.sender_subdivision.name};
-
-<c:forEach var="cat" items="${files.getter_category}">
+You successfully sent ${files.name} to
+<c:forEach var="cat" items="${files.getter_subdivisions}">
   ${cat.name}
---------------
-</c:forEach>
-
+</c:forEach> subdivision(s)!
 <a href="/web/send"><button>Back</button></a>
 </body>
 

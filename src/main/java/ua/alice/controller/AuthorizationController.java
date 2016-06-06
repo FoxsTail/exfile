@@ -13,6 +13,7 @@ import ua.alice.repository.SubdivisionJpaRepository;
 import ua.alice.repository.UserJpaRepository;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,14 +68,46 @@ public class AuthorizationController {
             subMap.put(s.getIds(), s.getName());
         }
 
-        List<Department> departments = departmentJpaRepository.findAll();
+
+       /* List<Department> departments = departmentJpaRepository.findAll();
         Map<Integer, String> depMap = new HashMap<>();
         for (Department d : departments) {
             depMap.put(d.getIdd(), d.getName());
+        }*/
+
+
+       /* Map<Integer, String> depFS = new HashMap<>();
+        Map<Integer, String> depFS2 = new HashMap<>();
+
+        for (Department d : subdivisions.get(0).getDepartments()) {
+            depFS.put(d.getIdd(), d.getName());
+        }
+        for (Department d : subdivisions.get(1).getDepartments()) {
+            depFS2.put(d.getIdd(), d.getName());
         }
 
+        Map<Integer, Map<Integer, String>> subPerDep = new HashMap<>();
+        subPerDep.put(subdivisions.get(0).getIds(), depFS);
+        subPerDep.put(subdivisions.get(1).getIds(), depFS2);*/
+        //сюда уиклом выгрузить пары
+        /*for(Map.Entry<Integer, Map<Integer, String>> map: subPerDep.entrySet()){
+            System.err.println(map);
+        }
+*/
+      /*  Map<Integer, String> trans = new HashMap<>();
+        Map<String, Map<Integer, String>> subDep = new HashMap<>();
+        for (Subdivision sub : subdivisions) {
+            List<Department> dep = sub.getDepartments();
+            for (Department d : dep) {
+                trans.put(d.getIdd(), d.getName());
+            }
+            subDep.put(sub.getName(), trans);
+            trans = new HashMap<>();
+        }
+*/
+        //modelAndView.addObject("test", subPerDep);
         modelAndView.addObject("sub", subMap);
-        modelAndView.addObject("dep", depMap);
+       // modelAndView.addObject("subDep", subDep);
 
         modelAndView.addObject("user", new User());
         return modelAndView;
