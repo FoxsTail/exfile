@@ -13,10 +13,11 @@
 <head>
     <title>Registration</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
 <div id="container">
-    <form:form action="/auth/register" name="form1" method="post" commandName="user">
+    <form:form action="/auth/login/register" name="form1" method="post" commandName="user">
         <table>
             <tr>
                 <td><form:input type="text" name="login" path="login" placeholder="Login"/>
@@ -60,7 +61,7 @@
             <tr>
                 <td><form:select disabled="true" path="department_trans" name="dep">
                     <form:option value="0" label="--- Select department---"/>
-                    <%--<form:options items="${dep}"/>--%>
+               <%--     <form:options items="${dep}"/>--%>
                 </form:select>
                     <br/><form:errors path="department_trans" cssClass="error"/>
                 </td>
@@ -74,7 +75,7 @@
             </tr>
         </table>
     </form:form>
-
+   <a href="/auth/login"> <button type="button">Back</button></a>
     <script type="text/javascript">
         $(function () {
             var sub = "${sub}"

@@ -55,7 +55,7 @@
       </c:if>
     </p>
   </form>
-  <a href="/auth/registration"><button>Registration</button></a>
+  <a href="/auth/login/registration"><button>Registration</button></a>
   </div>
 </body>
 </html>

@@ -31,7 +31,7 @@ public class AuthorizationController {
     @Autowired
     private SubdivisionJpaRepository subdivisionJpaRepository;
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/register", method = RequestMethod.POST)
     public ModelAndView registration(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -58,7 +58,7 @@ public class AuthorizationController {
         return new ModelAndView("login");
     }
 
-    @RequestMapping("/registration")
+    @RequestMapping("/login/registration")
     public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView("registration");
 
@@ -69,12 +69,12 @@ public class AuthorizationController {
         }
 
 
-       /* List<Department> departments = departmentJpaRepository.findAll();
+      /*  List<Department> departments = departmentJpaRepository.findAll();
         Map<Integer, String> depMap = new HashMap<>();
         for (Department d : departments) {
             depMap.put(d.getIdd(), d.getName());
-        }*/
-
+        }
+*/
 
        /* Map<Integer, String> depFS = new HashMap<>();
         Map<Integer, String> depFS2 = new HashMap<>();
@@ -107,7 +107,7 @@ public class AuthorizationController {
 */
         //modelAndView.addObject("test", subPerDep);
         modelAndView.addObject("sub", subMap);
-       // modelAndView.addObject("subDep", subDep);
+       // modelAndView.addObject("dep", depMap);
 
         modelAndView.addObject("user", new User());
         return modelAndView;
