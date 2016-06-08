@@ -15,50 +15,67 @@
 </head>
 <body>
 <div id="container">
-<%@include file="menu.jsp" %>
-<br>
-<form:form action="/web/downloadPerDate" method="post">
-    <table>
-        <tr>
-            <td>Enter the date in format dd\mm\yyyy:</td>
-            <td><input type="text" name="date"></td>
-            <td><button type="submit">Search</button></td>
-            <br>
-        </tr>
-    </table>
-</form:form>
-<c:if test="${empty files}">
-    <p>There are no files in database</p>
-</c:if>
-<c:if test="${not empty files}">
-    <table>
-        <tr>
-            <th>Files</th>
-        </tr>
-        <c:forEach items="${files}" var="file">
+    <%@include file="menu.jsp" %>
+    <br>
+    <form:form action="/web/downloadPerDate" method="post">
+        <table>
+            <tr>
+                <td>Enter the date:</td>
+                <td><input type="text" name="date" placeholder="dd\mm\yyyy"></td>
+                <td>
+                    <button type="submit" class="great_btn">Search</button>
+                </td>
+                <br>
+            </tr>
+        </table>
+    </form:form>
+    <c:if test="${empty files}">
+        <p>There are no files in database</p>
+    </c:if>
+    <c:if test="${not empty files}">
+        <table>
             <tr>
                 <td>
-                        ${file.name}<br>
-                        ${file.sender_subdivision.name}<br>
-                        ${file.sender_department.name}<br>
-                    <c:forEach var="cat" items="${file.getter_category}">
-                        ${cat.name}
-                    </c:forEach> <br>
-                        ${file.about}<br>
+                    The information about the file will be shown in that order:<br>
+                    1. File's name, 2. Sender subdivision, 3. Sender department,<br> 4. File's category(ies), 5. The
+                    specification. <br>
+                    <hr>
+
+                </td>
+            </tr>
+            <tr>
+                <th>Files:</th>
+
+            </tr>
+            <c:forEach items="${files}" var="file">
+            <tr>
+
+                <td>
+                    1. ${file.name}<br>
+                    2. ${file.sender_subdivision.name}<br>
+                    3. ${file.sender_department.name}<br>
+                    4.<c:forEach var="cat" items="${file.getter_category}">
+                    ${cat.name}
+                </c:forEach> <br>
+                    5. ${file.about}<br>
                     -----------------------------
                 </td>
                 <td>
                     <a href="/web/load/${file.id}">Download</a>
                 </td>
+
+
+                </c:forEach>
             </tr>
 
-        </c:forEach>
-    </table>
-</c:if>
-
-<a href="/web/send">
-    <button>Back</button>
-</a>
+            </tr>
+        </table>
+    </c:if>
+    <div align="right">
+        <a href="/web/send">
+            <button class="great_btn">Back</button>
+        </a>
     </div>
+</div>
 </body>
 </html>

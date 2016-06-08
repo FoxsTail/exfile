@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td>
-          <button type="submit">Log in</button>
+          <button type="submit" class="great_btn" >Log in</button>
         </td>
         <td>
         </td>
@@ -55,7 +55,7 @@
       </c:if>
     </p>
   </form>
-  <a href="/auth/login/registration"><button>Registration</button></a>
+  <a href="/auth/login/registration" ><button class="great_btn">Registration</button></a>
   </div>
 </body>
 </html>

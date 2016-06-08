@@ -9,26 +9,28 @@
 <html>
 <head>
     <title>Success</title>
-  <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
+
 </head>
 <body>
 <div id="container">
-<form:form action="/auth/login" commandName="user">
-  <h2>${user.login}, your registration was successful!<br /></h2>
+    <form:form action="/auth/login" commandName="user">
+        <div align="center"><h2>${user.login}, your registration was successful!<br/></h2></div>
 
-  <hr> Name : ${user.name} <br />
-  Surname : ${user.surname} <br />
-  Patronymic : ${user.patronymic} <br />
-  Department : ${user.department.name} <br />
-  Subdivision : ${user.subdivision.name}<br />
-  INN :  ${user.inn}<br />
-  Login : ${user.login} <br />
-  Password : ${user.password}<br />
+        <hr>
+        Name : ${user.name} <br/>
+        Surname : ${user.surname} <br/>
+        Patronymic : ${user.patronymic} <br/>
+        Department : ${user.department.name} <br/>
+        Subdivision : ${user.subdivision.name}<br/>
+        INN :  ${user.inn}<br/>
+        Login : ${user.login} <br/>
+        Password : ${user.password}<br/>
 
+        <br>
+        <button type="submit" class="great_btn">Log in</button>
 
-    <button type="submit">Log in</button>
-
-</form:form>
+    </form:form>
 </div>
 </body>
 </html>

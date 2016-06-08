@@ -14,9 +14,10 @@
 <body>
 <div id="container">
     <%@include file="menu.jsp" %>
+    <br>
     No, ${message}
     <a href="/web/send">
-        <button>Back</button>
+        <button class="great_btn">Back</button>
     </a>
 </div>
 </body>

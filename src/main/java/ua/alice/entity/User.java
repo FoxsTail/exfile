@@ -67,9 +67,6 @@ public class User {
     @Column(name = "role_user")
     private Role role;
 
-    @Column(name = "block_status")
-    private Boolean blocked_Y_N = false;
-
     @Pattern(regexp = "^[1-9][0-9]*$")
     @Transient
     private String department_trans;
@@ -221,11 +218,4 @@ public class User {
         return surname;
     }
 
-    public Boolean getBlocked_Y_N() {
-        return blocked_Y_N;
-    }
-
-    public void setBlocked_Y_N(Boolean blocked_Y_N) {
-        this.blocked_Y_N = blocked_Y_N;
-    }
 }

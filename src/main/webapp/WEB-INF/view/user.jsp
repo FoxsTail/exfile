@@ -16,12 +16,13 @@
 <body>
 <div id="container">
     <%@include file="menu.jsp" %>
-
-    <h2>User profile</h2>
+<br>
+    <h2>${user.name} profile</h2>
     <hr/>
     <c:if test="${not empty message}">
         <p>${message}</p>
     </c:if>
+    <c:if test="${not empty user}">
     <form:form action="/web/users/${user.id}" method="post" commandName="user">
         <table>
             <tr>
@@ -89,23 +90,23 @@
             </tr>
             <sec:authorize access="hasAuthority('ADMIN')">
                 <td>
-                    <form:label for="blocked_Y_N" path="blocked_Y_N">Block this user</form:label>
-                </td>
-                <td>
-                    <form:checkbox name="blocked_Y_N" path="blocked_Y_N" value="false"/>
+                 <a href="/web/users/${user.id}/delete"> <button type="button" class="great_btn">Delete user</button></a>
                 </td>
                 </tr>
             </sec:authorize>
+            <tr></tr>
             <tr>
-                <td>
-                    <button type="submit">Update</button>
+                <td >
+                    <button class="great_btn" type="reset">Cancel</button>
                 </td>
-                <td>
-                    <button type="reset">Cancel</button>
+                <td align="right">
+                    <button class="great_btn" type="submit">Update</button>
                 </td>
+
             </tr>
         </table>
     </form:form>
+    </c:if>
 </div>
 </body>
 </html>

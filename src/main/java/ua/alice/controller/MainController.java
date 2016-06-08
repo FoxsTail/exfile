@@ -55,6 +55,22 @@ public class MainController {
         return new ModelAndView("files", "files", files);
     }
 
+    @RequestMapping("/files/sort")
+    public ModelAndView sortCategory(@RequestParam("category") String category) {
+
+        List<ExFile> allFiles = exFileJpaRepository.findAll();
+        List<ExFile> sortedFiles = new ArrayList<>();
+
+        for (ExFile file : allFiles) {
+            for (Category cat : file.getGetter_category()) {
+                if (cat.getName().equals(category)) {
+                    sortedFiles.add(file);
+                }
+            }
+        }
+        return new ModelAndView("files", "files", sortedFiles);
+    }
+
     @RequestMapping("/files/{id}")
     public ModelAndView filesPerID(@PathVariable("id") Long id) {
         ExFile file = exFileJpaRepository.findOne(id);
@@ -69,6 +85,20 @@ public class MainController {
         return new ModelAndView("users", "users", users);
     }
 
+    @RequestMapping("/users/sort")
+    public ModelAndView sortSurname(@RequestParam("surname") String surname) {
+
+        List<User> allUsers = userJpaRepository.findAll();
+        List<User> sortedUser = new ArrayList<>();
+
+        for (User user : allUsers) {
+            if (user.getSurname().equals(surname)) {
+                sortedUser.add(user);
+            }
+        }
+        return new ModelAndView("users", "users", sortedUser);
+    }
+
     @RequestMapping("/users/{id}")
     public ModelAndView userGetProfile(@PathVariable("id") Long id) {
         User user = userJpaRepository.findOne(id);
@@ -79,18 +109,18 @@ public class MainController {
     public ModelAndView userUpdate(@PathVariable("id") Long id, @Valid @ModelAttribute("user") User user, BindingResult result) {
 
         if (result.hasErrors()) {
-            return new ModelAndView("studentprofile");
+            return new ModelAndView("users");
         }
         ModelAndView modelAndView = new ModelAndView("user");
 
         User actual = userJpaRepository.findOne(id);
-            user.setRole(actual.getRole());
+        user.setRole(actual.getRole());
 
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            SecurityUser userDetails = (SecurityUser) authentication.getPrincipal();
-            userDetails.setEmail(user.getEmail());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        SecurityUser userDetails = (SecurityUser) authentication.getPrincipal();
+        userDetails.setEmail(user.getEmail());
 
-            userJpaRepository.save(user);
+        userJpaRepository.save(user);
 
         modelAndView.addObject("message", "Your profile was updated successfully!=)");
         modelAndView.addObject("user", user);
@@ -98,10 +128,22 @@ public class MainController {
 
     }
 
+    @RequestMapping(value = "/users/{id}/delete")
+    public ModelAndView userUpdate(@PathVariable("id") Long id) {
+        User user = userJpaRepository.findOne(id);
+        userJpaRepository.delete(user);
+        return new ModelAndView("redirect:/web/deleted");
+
+    }
+
+    @RequestMapping(value = "/deleted")
+    public ModelAndView deleted() {
+        return new ModelAndView("deleted", "message", "The profile was deleted successfully!");
+    }
+
     @RequestMapping("/profile")
     public ModelAndView profile() {
         User user = getCurrentUser();
-
         return new ModelAndView("user", "user", user);
     }
 

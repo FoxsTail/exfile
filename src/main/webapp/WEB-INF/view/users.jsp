@@ -8,46 +8,64 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Users</title>
-  <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
 <div id="container">
-<%@include file="menu.jsp"%>
-<sec:authentication var="principal" property="principal"/>
+    <%@include file="menu.jsp" %>
+    <br>
+    <sec:authentication var="principal" property="principal"/>
+    <form:form action="/web/users/sort" method="post">
+        <table>
+            <tr>
+                <td><h2>Users</h2></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Enter the surname:
+                    <input type="text" name="surname" placeholder="Surname">
 
-  <h2>Users</h2>
-  <hr/>
-  <c:if test="${empty users}">
-    <p>There are no users in database</p>
-  </c:if>
-  <c:if test="${not empty users}">
-    <table>
-      <tr>
-        <th>Full Name</th>
-      </tr>
+                    <button type="submit" class="great_btn">Search</button>
+                </td>
 
+                <br>
+            </tr>
+        </table>
+    </form:form>
+    <hr/>
+    <c:if test="${empty users}">
+        <p>There are no users in database</p>
+    </c:if>
+    <c:if test="${not empty users}">
+        <table>
+            <tr>
+                <th>Full Name</th>
+            </tr>
 
-      <c:forEach items="${users}" var="user">
-        <c:if test='${principal.username}'>
-          <c:set value="authUser" var="authUser"/>
-        </c:if>
-        <tr>
-          <td><a href="/web/users/${user.id}" class="${authUser}">
-              ${user.name} ${user.surname} ${user.patronymic}
-          </a></td>
-          <%--<c:if test="${student.room != null}">
-            <td><a href="/web/rooms/${student.room.number}">
-                ${student.room.number}
-            </a></td>
-          </c:if>--%>
-        </tr>
-        <c:set value="" var="authUser"/>
-      </c:forEach>
-    </table>
-  </c:if>
+            <c:set value="1" var="i"/>
+            <c:forEach items="${users}" var="user">
+                <c:if test='${principal.username}'>
+                    <c:set value="authUser" var="authUser"/>
+                </c:if>
+                <tr>
+                    <td><a href="/web/users/${user.id}" class="${authUser}">
+                            ${user.surname} ${user.name} ${user.patronymic}
+                    </a></td>
+                    <td>${fn:toLowerCase(user.role)}</td>
+                </tr>
+                <c:set value="" var="authUser"/>
+                <c:set var="i" value="${i+1}"/>
+            </c:forEach>
+        </table>
+    </c:if>
 </div>
 </body>
 </html>

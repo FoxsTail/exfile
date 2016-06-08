@@ -12,9 +12,9 @@
   <link rel="stylesheet" type="text/css" href="../../resources/styles/css/bootstrap.css"/>
 </head>
 <body>
-<div id="container">
-Bye!=)
-<a href="/auth/login"><button>Log in</button></a>
+<div id="container" align="center">
+Bye!=)<br>
+<a href="/auth/login"><button align="center">Log in</button></a>
   </div>
 </body>
 </html>

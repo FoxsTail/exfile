@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Files</title>
@@ -16,10 +17,31 @@
 <body>
 <div id="container">
     <%@include file="menu.jsp" %>
+    <br>
     <table>
         <sec:authentication var="principal" property="principal"/>
 
-        <h2>Files</h2>
+        <form:form action="/web/files/sort" method="post">
+            <table>
+                <tr>
+                    <td><h2>Files</h2></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Enter the category:</td>
+                    <td><input type="text" name="category" placeholder="Category"></td>
+
+                    <td>
+                        <button type="submit" class="great_btn">Search</button>
+                    </td>
+
+                    <br>
+                </tr>
+            </table>
+        </form:form>
         <hr/>
         <c:if test="${empty files}">
             <p>There are no users in database</p>
@@ -27,20 +49,24 @@
         <c:if test="${not empty files}">
             <table>
                 <tr>
-                    <th>Full Name</th>
+                    <th>File's name\category\sender subdivision\sender department\specification</th>
                 </tr>
+                <tr></tr>
+                <c:set value="1" var="i"/>
                 <c:forEach items="${files}" var="file">
                     <c:if test='${principal.username}'>
                         <c:set value="authUser" var="authUser"/>
                     </c:if>
                     <tr>
                         <td><a href="/web/files/${file.id}" class="${authUser}">
-                                ${file.name}\ ${file.sender_subdivision.name}\ ${file.sender_department.name}\<c:forEach
+                                ${i}. ${file.name}\ <c:forEach
                                 var="cat" items="${file.getter_category}">
-                            ${cat.name}\
-                        </c:forEach> <br> ${file.about}</a></td>
+                            ${cat.name}
+                        </c:forEach>\ ${file.sender_subdivision.name} \ ${file.sender_department.name}\
+                             ${file.about}</a></td>
                     </tr>
                     <c:set value="" var="authUser"/>
+                    <c:set var="i" value="${i+1}"/>
                 </c:forEach>
 
             </table>
